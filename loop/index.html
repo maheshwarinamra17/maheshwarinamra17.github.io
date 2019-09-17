@@ -14,7 +14,10 @@
 	<link href="styles.css" rel="stylesheet">
 	
 	<link href="responsive.css" rel="stylesheet">
-	
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 	
@@ -25,22 +28,34 @@
 				<h1 class="title"><img src="logo.png" style="width: 150px;"></h1>
 				<p class="desc font-white"><b>
 					What's up? You're early to this party.<br/><br/>Please drop us your email <br/>We will let you know when we are ready!</b></p>
-				
 				<div class="email-input-area">
-					<form method="post">
-						<a href="mailto:agarwalutsav09@gmail.com?subject=Regarding Loop">
-							<button class="submit-btn" name="submit" type="button"><b>DROP US A MAIL</b></button>
-						</a>
-					</form>
-				</div>
-							
-				
+					<input class="email-input" name="email" type="text" placeholder="Enter your email"/>
+					<button class="submit-btn" name="submit" id="btn-register" type="button"><b>NOTIFY US</b></button>
+				</div>	
 			</div>
 		</div>
 	</div>
-	
-	
-
-	
 </body>
+<script type="text/javascript">
+	var signupForm = function(){
+		$('#btn-register').on('click', function(){
+			let email_id = $('input[name=email]').val();
+			let url = "https://gmail.us4.list-manage.com/subscribe/post?u=cc77903c2d1be00905e6b728f&amp;id=57d1709424&EMAIL="+email_id;
+			$.ajax({
+	                type: "POST",
+	                url: url,
+	                dataType: "json",
+	                success: function (response) {
+
+	                },
+	                error: function(response) {
+	                   
+	                },
+	                complete: function(){
+	                }
+	       });
+		})
+	}
+	signupForm();
+</script>
 </html>
