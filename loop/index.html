@@ -10,52 +10,105 @@
 	<!-- Font -->
 	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CPoppins:400,500" rel="stylesheet">
+	
+	<!-- Stylesheets -->
+	
+	<link href="common-css/bootstrap.css" rel="stylesheet">
+	
+	
+	<link href="common-css/ionicons.css" rel="stylesheet">
+	
+	
+	<link rel="stylesheet" href="common-css/jquery.classycountdown.css" />
 		
 	<link href="styles.css" rel="stylesheet">
 	
 	<link href="responsive.css" rel="stylesheet">
-	<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	
-	<div class="main-area center-text" style="background-image:url('back.jpg');" >
-		<div class="display-table">
-			<div class="display-table-cell">
+	<div class="main-area">
+		<div class="container full-height position-static">
+			
+			<section class="left-section full-height">
+		
+				<a class="logo" href="#"><img src="logo_black.png" alt="Logo"></a>
 				
-				<h1 class="title"><img src="logo.png" style="width: 150px;"></h1>
-				<p class="desc font-white"><b>
-					What's up? You're early to this party.<br/><br/>Please drop us your email <br/>We will let you know when we are ready!</b></p>
-				<div class="email-input-area">
-					<input class="email-input" name="email" type="text" placeholder="Enter your email"/>
-					<button class="submit-btn" name="submit" id="btn-register" type="button"><b>NOTIFY US</b></button>
-				</div>	
-			</div>
-		</div>
-	</div>
-</body>
-<script type="text/javascript">
-	var signupForm = function(){
-		$('#btn-register').on('click', function(){
-			let email_id = $('input[name=email]').val();
-			let url = "https://gmail.us4.list-manage.com/subscribe/post?u=cc77903c2d1be00905e6b728f&amp;id=57d1709424&EMAIL="+email_id;
-			$.ajax({
-	                type: "POST",
-	                url: url,
-	                dataType: "json",
-	                success: function (response) {
+				<div class="display-table">
+					<div class="display-table-cell">
+						<div class="main-content">
+							<h1 class="title"><b>Coming<br/>Soon</b></h1>
+							<p>What's up? You're early to this party.</p><br/>
+							<p>Please drop us your email <br/>We will let you know when we are ready!</p>
+							<div class="email-input-area">
+								<form id="notifForm">
+									<input class="email-input" name="EMAIL" type="text" placeholder="Enter your email"/>
+									<button class="submit-btn" name="submit" type="button" id="btn-notify"><b>NOTIFY US</b></button>
+								</form>
+							</div><!-- email-input-area -->
+							<small id="p_error"></small>
+							
+							<p class="post-desc">Sign up now to get early notification of our lauch date!</p>
+						</div><!-- main-content -->
+					</div><!-- display-table-cell -->
+				</div><!-- display-table -->
+				
+				<iframe  id="mailchimp-form" src="" style="display: none;">
+					
+				</iframe>
+			</section><!-- left-section -->
+		
+			<section class="right-section" style="background-image: url(back.jpg)">
+			
+				<div class="display-table center-text">
+					<div class="display-table-cell">
+						
+						
+						<div id="rounded-countdown">
+							<div class="countdown" data-remaining-sec="4000000"></div>
+						</div>
+						
+					</div><!-- display-table-cell -->
+				</div><!-- display-table -->
+				
+			</section><!-- right-section -->
+		
+		</div><!-- container -->
+	</div><!-- main-area -->
 
-	                },
-	                error: function(response) {
-	                   
-	                },
-	                complete: function(){
-	                }
-	       });
-		})
-	}
-	signupForm();
-</script>
+	<script src="common-js/jquery-3.1.1.min.js"></script>
+	
+	<script src="common-js/tether.min.js"></script>
+	
+	<script src="common-js/bootstrap.js"></script>
+	
+	<script src="common-js/jquery.classycountdown.js"></script>
+	
+	<script src="common-js/jquery.knob.js"></script>
+	
+	<script src="common-js/jquery.throttle.js"></script>
+	
+	<script src="common-js/scripts.js"></script>
+
+	<script type="text/javascript">
+		
+	</script>
+	
+	<script type="text/javascript">
+	 $('#btn-notify').on('click', function(){
+	 	let email = $('input[name=EMAIL]').val();
+	 	let pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+	 	if(!pattern.test(email)){
+	 		$('#p_error').removeClass().addClass('text-red');
+	 		$('#p_error').text('Invalid email id');
+	 		return;
+	 	}
+	 	let url = "https://gmail.us4.list-manage.com/subscribe/post?u=cc77903c2d1be00905e6b728f&amp;id=57d1709424&EMAIL="+email;
+	 	$('#mailchimp-form').attr('src', url);
+	 	$('#p_error').removeClass().addClass('text-green');
+	 	$('#p_error').text('Emaill successfully accepted');
+	 })
+	</script>
+</body>
 </html>
