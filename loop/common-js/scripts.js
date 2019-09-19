@@ -16,10 +16,11 @@
 		var remainingSec = $('.countdown').data('remaining-sec');
 		$('.countdown').ClassyCountdown({
 			theme: "flat-colors-very-wide",
-			end: $.now() + remainingSec
+			end: $.now() + parseInt(1572728565 - $.now()/1000)
 		});
 	}
 	
+
 	//NORMAL TIMES COUNTDOWN
 	
 	if(isExists('#normal-countdown')){
