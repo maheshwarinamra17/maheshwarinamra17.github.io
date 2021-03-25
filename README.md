@@ -1,5 +1,5 @@
 ---
-description: Cool Stuff
+description: COOL STUFF 
 ---
 
 # Initial page
